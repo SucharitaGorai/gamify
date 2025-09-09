@@ -11,6 +11,11 @@ import chapter5Thumb from "../assets/Chp-5.png";
 import chapter6Thumb from "../assets/Chp-6.png";
 import chapter7Thumb from "../assets/Chp-7.png";
 import chapter8Thumb from "../assets/Chp-8.png";
+import chapter9Thumb from "../assets/Chp-9.png";
+import chapter10Thumb from "../assets/Chp-10.png";
+import chapter11Thumb from "../assets/Chp-11.png";
+import chapter12Thumb from "../assets/Chp-12.png";
+import chapter13Thumb from "../assets/Chp-13.png";
 
 export default function Lesson() {
   const { id } = useParams();
@@ -25,6 +30,12 @@ export default function Lesson() {
       { title: "Chapter 6", thumb: chapter6Thumb, linkTo: "/pdfs/chapter6.pdf" },
       { title: "Chapter 7", thumb: chapter7Thumb, linkTo: "/pdfs/chapter7.pdf" },
       { title: "Chapter 8", thumb: chapter8Thumb, linkTo: "/chapter8" }, // special route
+      { title: "Chapter 9", thumb: chapter7Thumb, linkTo: "/pdfs/chapter9.pdf" },
+      { title: "Chapter 10", thumb: chapter7Thumb, linkTo: "/pdfs/chapter10.pdf" },
+      { title: "Chapter 11", thumb: chapter7Thumb, linkTo: "/pdfs/chapter11.pdf" },
+      { title: "Chapter 12", thumb: chapter7Thumb, linkTo: "/pdfs/chapter12.pdf" },
+      { title: "Chapter 13", thumb: chapter7Thumb, linkTo: "/pdfs/chapter13.pdf" },
+      
     ];
 
     return (
