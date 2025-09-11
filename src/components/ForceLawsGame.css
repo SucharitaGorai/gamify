@@ -1,0 +1,115 @@
+/* ForceLawsGame.css */
+
+/* Background & font */
+body, html {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive, Arial, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Particle background */
+#particles-js {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+}
+
+/* Glowing headings */
+h1, h2, h3 {
+  text-align: center;
+  text-shadow: 0 0 8px #fff, 0 0 12px #00f, 0 0 16px #0ff;
+}
+
+/* Panels */
+.panel {
+  background: rgba(0,0,0,0.4);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 900px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  transition: transform 0.3s;
+}
+.panel:hover {
+  transform: scale(1.02);
+}
+
+/* Buttons */
+.game-button {
+  background: linear-gradient(45deg, #1abc9c, #16a085);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #16a085;
+  transition: all 0.3s;
+  margin: 8px 4px;
+}
+.game-button:hover {
+  box-shadow: 0 0 20px #1abc9c;
+  transform: translateY(-2px);
+}
+.game-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 8px #16a085;
+}
+
+/* Input fields */
+.game-input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  margin-right: 8px;
+}
+
+/* Progress bar */
+.progress-container {
+  background: rgba(255,255,255,0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 24px;
+  margin: 12px 0;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #f1c40f, #f39c12);
+  width: 0%;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  transition: width 0.7s ease-in-out;
+}
+
+/* Quiz styles */
+.quiz-option {
+  margin-right: 16px;
+  cursor: pointer;
+}
+.quiz-option input {
+  margin-right: 6px;
+}
+
+/* Score animation */
+.score-increment {
+  display: inline-block;
+  color: #0f0;
+  font-weight: bold;
+  animation: pop 0.8s ease-out forwards;
+}
+@keyframes pop {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive */
+@media(max-width: 768px){
+  .panel { padding: 16px; }
+  .game-button { padding: 10px 16px; }
+}

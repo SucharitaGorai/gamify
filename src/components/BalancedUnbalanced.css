@@ -1,0 +1,127 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.stage {
+  background: #ddd;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  padding-top: 40px;
+}
+
+.table {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 48px;
+  height: 20px;
+  background: #8b5a2b;
+  z-index: 0;
+}
+
+.ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 68px;
+  height: 10px;
+  background: #aaa;
+}
+
+.block {
+  width: 70px;
+  height: 48px;
+  background: tomato;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: absolute;
+  bottom: 68px;
+  z-index: 2;
+}
+
+.rope {
+  position: absolute;
+  bottom: 92px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #654321;
+  z-index: 1;
+}
+
+.puppet {
+  width: 60px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 88px;
+}
+
+.puppet .head {
+  width: 30px;
+  height: 30px;
+  background: #ffcc99;
+  border-radius: 50%;
+}
+
+.puppet .body {
+  width: 20px;
+  height: 40px;
+  background: #333;
+  margin-top: 4px;
+}
+
+.puppet.left {
+  left: 20px;
+}
+
+.puppet.right {
+  right: 20px;
+}
+
+.status {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.toolbar {
+  background: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="range"] {
+  width: 100%;
+}
