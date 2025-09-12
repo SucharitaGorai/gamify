@@ -1,0 +1,995 @@
+/* Import Student-Friendly Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables for Student Theme */
+:root {
+  --primary-blue: #4A90E2;
+  --secondary-teal: #50C878;
+  --accent-orange: #FF8C42;
+  --light-blue: #E3F2FD;
+  --soft-teal: #E0F7FA;
+  --warm-orange: #FFF3E0;
+  --text-dark: #2C3E50;
+  --text-light: #7F8C8D;
+  --white: #FFFFFF;
+  --success-green: #4CAF50;
+  --error-red: #E74C3C;
+  --warning-orange: #FF9800;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.15);
+  --shadow-heavy: rgba(0, 0, 0, 0.25);
+}
+
+/* Main Container */
+.student-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-teal) 50%, var(--warm-orange) 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Animated Background */
+.student-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Floating Books Animation */
+.floating-books {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-book {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.3;
+  animation: float-up-down linear infinite;
+}
+
+.book-icon {
+  animation: book-flip 4s ease-in-out infinite;
+}
+
+@keyframes float-up-down {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes book-flip {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Floating Pencils Animation */
+.floating-pencils {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-pencil {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  animation: float-diagonal linear infinite;
+}
+
+.pencil-icon {
+  animation: pencil-write 3s ease-in-out infinite;
+}
+
+@keyframes float-diagonal {
+  0% {
+    transform: translate(100vw, 100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-100px, -100px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pencil-write {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+/* Floating Graduation Caps Animation */
+.floating-graduation-caps {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-cap {
+  position: absolute;
+  font-size: 1.8rem;
+  opacity: 0.2;
+  animation: float-graduation linear infinite;
+}
+
+.cap-icon {
+  animation: cap-bounce 2s ease-in-out infinite;
+}
+
+@keyframes float-graduation {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes cap-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Floating Laptops Animation */
+.floating-laptops {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-laptop {
+  position: absolute;
+  font-size: 1.6rem;
+  opacity: 0.25;
+  animation: float-laptop linear infinite;
+}
+
+.laptop-icon {
+  animation: laptop-type 2.5s ease-in-out infinite;
+}
+
+@keyframes float-laptop {
+  0% {
+    transform: translateX(100vw) translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.25;
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translateX(-100px) translateY(-100px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes laptop-type {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Success Animation */
+.success-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.success-checkmark {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  background: var(--success-green);
+  border-radius: 50%;
+  animation: success-pop 0.6s ease-out;
+  box-shadow: 0 0 40px rgba(76, 175, 80, 0.6);
+}
+
+.checkmark {
+  font-size: 3.5rem;
+  color: white;
+  font-weight: bold;
+  animation: checkmark-draw 0.8s ease-out 0.3s both;
+}
+
+.graduation-cap {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  font-size: 2.5rem;
+  animation: cap-celebration 1s ease-out 0.5s both;
+}
+
+.celebration-text {
+  position: absolute;
+  bottom: -40px;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  animation: text-fade-in 1s ease-out 1s both;
+}
+
+@keyframes success-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkmark-draw {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes cap-celebration {
+  0% {
+    transform: translateY(20px) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes text-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Confetti Animation */
+.confetti {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  animation: confetti-fall 3s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Main Content */
+.student-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+/* Educational Logo - Student Desk */
+.education-logo {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.student-desk {
+  position: relative;
+  display: inline-block;
+  animation: logo-glow 3s ease-in-out infinite alternate;
+}
+
+.desk-icon {
+  font-size: 3rem;
+  animation: desk-glow 2s ease-in-out infinite;
+}
+
+.laptop-on-desk {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  animation: laptop-glow 2.5s ease-in-out infinite;
+}
+
+.books-on-desk {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.books-on-desk .book {
+  font-size: 1.2rem;
+  animation: book-stack-bounce 2s ease-in-out infinite;
+}
+
+.book-1 {
+  animation-delay: 0s;
+}
+
+.book-2 {
+  animation-delay: 0.3s;
+}
+
+.glow-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(80, 200, 120, 0.3), transparent);
+  border-radius: 50%;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes logo-glow {
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes desk-glow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+
+@keyframes laptop-glow {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+@keyframes book-stack-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+/* Form Container */
+.student-form-container {
+  position: relative;
+}
+
+.form-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 40px var(--shadow-medium);
+  border: 1px solid rgba(80, 200, 120, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary-teal), var(--primary-blue), var(--accent-orange));
+}
+
+/* Form Styles */
+.student-form {
+  position: relative;
+  z-index: 2;
+}
+
+.student-title {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.title-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: linear-gradient(135deg, var(--secondary-teal), var(--primary-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 2;
+}
+
+.title-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--secondary-teal), var(--primary-blue));
+  opacity: 0.1;
+  border-radius: 10px;
+  animation: title-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes title-glow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.2;
+  }
+}
+
+/* Input Groups */
+.input-group {
+  margin-bottom: 25px;
+}
+
+.student-label {
+  display: block;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.student-input {
+  width: 100%;
+  padding: 15px 50px 15px 20px;
+  background: #F8F9FA;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.student-input::placeholder {
+  color: var(--text-light);
+}
+
+.student-input:focus {
+  border-color: var(--secondary-teal);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(80, 200, 120, 0.1);
+  transform: translateY(-2px);
+}
+
+.student-input.error {
+  border-color: var(--error-red);
+  background: #FEF2F2;
+}
+
+.student-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.input-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  opacity: 0.6;
+}
+
+.validation-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  animation: validation-pop 0.3s ease-out;
+}
+
+.validation-icon.success {
+  color: var(--success-green);
+}
+
+@keyframes validation-pop {
+  0% {
+    transform: translateY(-50%) scale(0);
+  }
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.error-message {
+  color: var(--error-red);
+  font-size: 0.8rem;
+  margin-top: 5px;
+  font-weight: 500;
+  animation: error-shake 0.3s ease-out;
+}
+
+@keyframes error-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* Password Requirements */
+.password-requirements {
+  margin-top: 10px;
+  padding: 15px;
+  background: #F8F9FA;
+  border-radius: 8px;
+  border: 1px solid #E9ECEF;
+}
+
+.requirement {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.requirement:last-child {
+  margin-bottom: 0;
+}
+
+.requirement.valid {
+  color: var(--success-green);
+}
+
+.requirement.invalid {
+  color: var(--text-light);
+}
+
+.requirement-icon {
+  margin-right: 8px;
+  font-size: 0.9rem;
+}
+
+/* Button Styles */
+.student-button {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--secondary-teal), var(--primary-blue));
+  border: none;
+  border-radius: 12px;
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(80, 200, 120, 0.3);
+}
+
+.signup-button {
+  animation: signup-button-pulse 3s ease-in-out infinite;
+}
+
+.student-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(80, 200, 120, 0.4);
+}
+
+.student-button:active {
+  transform: translateY(-1px);
+}
+
+.student-button.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.button-text {
+  position: relative;
+  z-index: 3;
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary-blue), var(--accent-orange));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.student-button:hover .button-glow {
+  opacity: 0.3;
+}
+
+.button-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: button-shine 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+.button-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  z-index: 4;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--white);
+  animation: progress-loading 2s ease-in-out infinite;
+}
+
+@keyframes signup-button-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes button-shine {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes progress-loading {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Form Footer */
+.form-footer {
+  text-align: center;
+}
+
+.student-link {
+  color: var(--secondary-teal);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.link-text {
+  position: relative;
+  z-index: 2;
+}
+
+.link-underline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-blue);
+  transition: width 0.3s ease;
+}
+
+.student-link:hover .link-underline {
+  width: 100%;
+}
+
+.student-link:hover {
+  color: var(--primary-blue);
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .student-content {
+    padding: 15px;
+  }
+  
+  .form-card {
+    padding: 30px 20px;
+  }
+  
+  .student-title .title-text {
+    font-size: 1.7rem;
+  }
+  
+  .student-button {
+    padding: 15px;
+    font-size: 1rem;
+  }
+  
+  .desk-icon {
+    font-size: 2.5rem;
+  }
+  
+  .laptop-on-desk {
+    font-size: 1.5rem;
+  }
+  
+  .floating-book {
+    font-size: 1.5rem;
+  }
+  
+  .floating-pencil {
+    font-size: 1.2rem;
+  }
+  
+  .floating-cap {
+    font-size: 1.5rem;
+  }
+  
+  .floating-laptop {
+    font-size: 1.3rem;
+  }
+  
+  .success-checkmark {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .checkmark {
+    font-size: 3rem;
+  }
+  
+  .graduation-cap {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-title .title-text {
+    font-size: 1.4rem;
+  }
+  
+  .form-card {
+    padding: 25px 15px;
+  }
+  
+  .desk-icon {
+    font-size: 2rem;
+  }
+  
+  .laptop-on-desk {
+    font-size: 1.3rem;
+  }
+  
+  .floating-book {
+    font-size: 1.2rem;
+  }
+  
+  .floating-pencil {
+    font-size: 1rem;
+  }
+  
+  .floating-cap {
+    font-size: 1.2rem;
+  }
+  
+  .floating-laptop {
+    font-size: 1.1rem;
+  }
+  
+  .success-checkmark {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .checkmark {
+    font-size: 2.5rem;
+  }
+  
+  .graduation-cap {
+    font-size: 1.8rem;
+  }
+  
+  .celebration-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Demo Notice and Auth Error Styles */
+.demo-notice {
+  background: linear-gradient(135deg, var(--warning-orange), #FFB74D);
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.demo-notice p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.auth-error {
+  background: linear-gradient(135deg, var(--error-red), #E57373);
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  animation: shake 0.5s ease-in-out;
+}
+
+.auth-error p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}

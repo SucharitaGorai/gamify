@@ -1,0 +1,41 @@
+/* Desktop Layout only */
+.page-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #5e60ce, #7400b8, #6930c3);
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: white;
+}
+
+.content-box {
+  max-width: 1200px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.chapter-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #ffde59;
+  text-shadow: 0 0 10px #ffde59;
+}
+
+.concept-title {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #ffb700;
+  text-shadow: 0 0 8px #ffb700;
+}
+
+.notes-list {
+  padding-left: 24px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}

@@ -1,15 +1,39 @@
+/* Pixel font import */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* Minimal global styles */
 body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
-  background-color: #fafafa;
-  color: #111827; /* dark neutral text */
+  /* Use the same dark theme background as sections so bottom matches */
+  background-color: #0f0a1f;
+  color: #e9d5ff; /* default text tone over dark */
+  overflow-x: hidden; /* prevent accidental horizontal scroll */
+}
+html, body { min-height: 100%; }
+
+/* Pixelated look for all game canvases */
+canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+/* Make thumbnails look crisp too */
+img {
+  image-rendering: pixelated;
 }
 
 .container {
   padding: 16px;
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* Full-width container for special pages */
+.container.full-width {
+  max-width: none;
+  width: 100%;
+  padding: 0 26px 0 0; /* adjusted by -2px */
+  box-sizing: border-box;
 }
 
 .card {
@@ -33,4 +57,370 @@ body {
 
 .btn:hover {
   background: #1e40af; /* darker blue on hover */
+}
+
+/* --- Gamified Subject Grid (Purple Theme) --- */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+/* Force exactly 3 chapters per row for Math lesson */
+/* Default grid (may be unused for math list layout) */
+.math-lesson .subject-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px; /* user requested spacing */
+}
+
+/* One-per-line row layout for math page */
+.math-lesson .chapter-row {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px; /* left thumb, middle description, right widget same size as thumb */
+  align-items: stretch;
+  gap: 20px;
+  margin: 20px 0;           /* spacing for custom background */
+  padding: 12px;            /* inner breathing room */
+  border: 0;                /* remove covering border */
+  box-shadow: none;         /* remove inset shadow */
+  background: transparent;  /* let page background show */
+  position: relative;       /* allow absolute separator */
+}
+.math-lesson .thumb-box {
+  border: 0;
+  border-left: 3px solid #7c3aed;   /* vertical borders only */
+  border-right: 3px solid #7c3aed;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+/* Put the line exactly under the thumbnail box */
+/* Disable thumbnail-side borders so only the centered separator shows */
+.math-lesson .chapter-row .thumb-box { border-bottom: 0; }
+.math-lesson .chapter-row + .chapter-row .thumb-box { border-top: 0; }
+/* Removed old per-thumbnail top border rule to prevent duplicate separators */
+.math-lesson .chapter-row .chapter-thumb.img {
+  height: 300px; /* consistent with request */
+}
+.math-lesson .chapter-row .chapter-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.math-lesson .chapter-row .chapter-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.math-lesson .chapter-row .actions {
+  margin-top: 8px;
+}
+.math-lesson .chapter-row .actions .btn {
+  margin-right: 8px;
+}
+
+/* Centered separator between rows: placed at half the vertical gap */
+.math-lesson .chapter-row:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: -14px;   /* slightly overextend to eliminate any subpixel gap */
+  right: -14px;
+  height: 5px;   /* thicker separator */
+  background: #7c3aed;
+  bottom: -10px; /* half of the 20px vertical margin between rows */
+}
+
+/* Right-side animated game widget */
+.math-lesson .game-widget {
+  border: 0;               /* remove widget border */
+  box-shadow: none;        /* remove inset shadow */
+  background: #0f0a1f;
+  color: #e9d5ff;
+  padding: 0;             /* no inner padding so canvas fits */
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;                /* no internal gaps */
+  height: 300px;            /* match thumbnail height */
+  box-sizing: border-box;   /* include border in height */
+}
+.math-lesson .game-widget .title {
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.math-lesson .game-widget .mini-stage {
+  position: relative;
+  height: 100%;          /* fill full height */
+  background: #1b1233;
+  overflow: hidden;
+  border: 0;             /* no inner border */
+  display: block;
+}
+
+/* Ensure canvases fill the mini-stage exactly */
+.math-lesson .game-widget .mini-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.pixel-spark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #facc15;
+  animation: floatUp 2.2s linear infinite;
+  image-rendering: pixelated;
+}
+@keyframes floatUp {
+  0% { transform: translateY(60px) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-10px) scale(1); opacity: 0; }
+}
+.math-lesson .game-widget .cta {
+  display: inline-block;
+  background: #7c3aed;
+  color: #fff;
+  padding: 8px 10px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 0 0 3px #3b1747 inset;
+  border-radius: 0;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 640px) {
+  .math-lesson .chapter-row {
+    grid-template-columns: 1fr;
+  }
+  .math-lesson .chapter-row .chapter-thumb.img {
+    height: 220px;
+  }
+  .math-lesson .game-widget { height: 220px; }
+}
+
+/* Make adjacent cards seamless in math page */
+.math-lesson .chapter-card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Remove any spacing inside the thumbnail for math page */
+.math-lesson .chapter-thumb.img {
+  height: 300px;       /* user requested height */
+  padding: 0;          /* no padding around image */
+  background: transparent; /* no background around image */
+}
+.math-lesson .chapter-thumb.img img {
+  width: 100%;
+  height: 100%;        /* fill slot height */
+  object-fit: cover;   /* allow slight crop top/bottom to remove empty space */
+}
+
+.chapter-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transform: translateY(0);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.chapter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+.chapter-card.purple {
+  border: 2px solid #7c3aed26; /* subtle purple border */
+}
+
+/* Pixelated purple card variant to mirror /squares vibe */
+.chapter-card.pixel {
+  border: 3px solid #7c3aed;
+  border-radius: 8px;
+  box-shadow: 0 0 0 4px #3b1747 inset, 0 6px 18px rgba(0,0,0,0.18);
+  background: #1b1233;
+}
+.chapter-card.pixel:hover {
+  box-shadow: 0 0 0 4px #3b1747 inset, 0 0 0 4px rgba(124,58,237,0.35), 0 10px 24px rgba(0,0,0,0.24);
+}
+
+.chapter-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Generated purple thumbnails for Maths */
+.chapter-thumb.gen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(120px 60px at 50% 40%, #a78bfa 0%, #7c3aed 60%, #4c1d95 100%);
+  height: 120px;
+}
+.chapter-thumb.img {
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f0a1f; /* dark backdrop so full image reads clearly */
+  padding: 6px; /* small padding to avoid clipping when using contain */
+}
+.chapter-thumb.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* show full image inside thumbnail */
+  display: block;
+}
+
+.thumb-emoji {
+  font-size: 34px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+
+.chapter-title {
+  padding: 10px 12px 14px;
+  font-weight: 600;
+  color: #3b0764; /* deep purple text */
+}
+
+/* Adjust colors for pixel card */
+.chapter-card.pixel .chapter-title {
+  color: #e9d5ff;
+}
+.chapter-card.pixel .icon-badge {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+.chapter-card.pixel .xp-pill {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.xp-pill {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+  z-index: 3;
+}
+
+.icon-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ede9fe; /* light purple */
+  color: #5b21b6; /* deep purple */
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.2);
+  z-index: 2;
+}
+
+/* Responsive tweaks */
+@media (max-width: 420px) {
+  .chapter-thumb {
+    height: 100px;
+  }
+}
+
+/* Page-level pixel theme wrapper similar to /squares */
+.pixel-theme {
+  background: #0f0a1f;
+  color: #e9d5ff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 3px solid #7c3aed;
+  box-shadow: 0 0 0 6px #3b1747 inset;
+}
+/* Profile page should not have the outermost border */
+.profile-page.pixel-theme {
+  border: 0;
+  box-shadow: none;
+}
+/* Dashboard page should not have the outermost border */
+.dashboard-page.pixel-theme {
+  border: 0;
+  box-shadow: none;
+}
+.pixel-font, .pixel-theme, .profile-page {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 1px; /* increased for better legibility */
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  line-height: 1.5; /* add comfortable vertical spacing */
+}
+/* Extra spacing on key UI text elements */
+.pixel-theme h1, .pixel-theme h2, .pixel-theme h3,
+.profile-page h1, .profile-page h2, .profile-page h3,
+.pixel-theme .btn, .profile-page .btn,
+.pixel-theme nav a, .profile-page nav a {
+  letter-spacing: 1.2px;
+}
+/* Headings and paragraphs spacing */
+.pixel-theme h1, .profile-page h1 { margin: 16px 0 10px; line-height: 1.25; }
+.pixel-theme h2, .profile-page h2 { margin: 14px 0 10px; line-height: 1.3; }
+.pixel-theme h3, .profile-page h3 { margin: 12px 0 8px;  line-height: 1.3; }
+.pixel-theme p, .profile-page p { margin: 10px 0 14px; }
+/* Lists */
+.pixel-theme ul, .profile-page ul { margin: 8px 0 12px; padding-left: 18px; }
+.pixel-theme li, .profile-page li { margin-bottom: 6px; }
+/* Buttons vertical rhythm */
+.pixel-theme .btn, .profile-page .btn { margin-top: 4px; margin-bottom: 4px; }
+.pixel-theme.pixel-bg {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh; /* cover full viewport height */
+}
+/* Prevent right border from being hidden behind the OS scrollbar */
+.pixel-theme.pixel-bg { padding-right: 26px; }
+.pixel-theme.pixel-bg::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(124,58,237,0.08) 1px, transparent 1px) 0 0/16px 16px,
+    linear-gradient(0deg, rgba(124,58,237,0.06) 1px, transparent 1px) 0 0/16px 16px,
+    radial-gradient(ellipse at top left, rgba(167,139,250,0.15), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(76,29,149,0.25), transparent 60%);
+}
+.pixel-theme.pixel-bg::after {
+  /* subtle scanlines */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 2px,
+    rgba(0,0,0,0.03) 3px,
+    rgba(0,0,0,0.03) 4px
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.pixel-theme h2,
+.pixel-theme p {
+  color: #e9d5ff;
+}
+.pixel-theme .btn {
+  background: #7c3aed;
+  box-shadow: 0 0 0 3px #3b1747 inset;
+  border-radius: 0;
 }
